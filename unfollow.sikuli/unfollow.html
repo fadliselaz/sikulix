@@ -1,0 +1,160 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>unfollow.sikuli</h2> <a href="unfollow.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="cmt">#unfollowing instagram</span>
+
+<span class="kw">class</span> Unfol:
+    <span class="kw">def</span> __init__(self, prof, foll, arrow, hastag, sortBy, latest, following, execute, res, time, tt):
+        self.prof = prof
+        self.foll = foll
+        self.arrow = arrow
+        self.hastag = hastag
+        self.sortBy = sortBy
+        self.latest = latest
+        self.following = following
+        self.execute = execute
+        self.res = res
+        self.time = time
+        self.tt = tt
+
+    <span class="kw">def</span> langkah1(self):
+        <span class="skw">click</span>(self.prof)
+        <span class="skw">wait</span>(self.foll, FOREVER)
+        <span class="skw">click</span>(self.foll)
+        <span class="skw">wait</span>(self.hastag)
+        <span class="skw">click</span>(self.arrow)
+        <span class="skw">wait</span>(self.sortBy, FOREVER)
+        <span class="skw">click</span>(self.latest)
+        <span class="cmt">#wait(self.following,FOREVER)</span>
+        <span class="skw">wait</span>(<span class="dig">10</span>)
+
+    <span class="kw">def</span> langkah2(self):
+
+       <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">11</span>):
+
+
+            <span class="kw">if</span> exists(self.following):
+                <span class="skw">click</span>(self.following)
+                <span class="skw">wait</span>(self.execute, FOREVER)
+                <span class="skw">click</span>(self.execute)
+                self.time -= <span class="dig">1</span>
+                <span class="kw">if</span> self.time == <span class="dig">0</span>:
+                    self.ext()
+
+                <span class="skw">wait</span>(<span class="dig">2</span>)
+
+            <span class="kw">else</span>:
+
+                self.scroll()
+
+
+
+    <span class="kw">def</span> scroll(self):
+        <span class="skw">type</span>(Key.DOWN * <span class="dig">10</span>)
+
+    <span class="kw">def</span> ext(self):
+        <span class="skw">popup</span>(<span class="str">"selesai unfollow {} account"</span>.format(self.tt))
+        self.reset()
+        quit()
+
+    <span class="kw">def</span> reset(self):
+        <span class="skw">click</span>(<img src="1560281797815.png" />)
+        <span class="skw">wait</span>(<img src="1560281822816.png" />,FOREVER)
+        <span class="skw">click</span>(<img src="1560281822816.png" />)
+        <span class="skw">wait</span>(<span class="dig">2</span>)
+        <span class="cmt">#click("1560281882482.png")</span>
+        <span class="cmt">#wait("1560281901883.png",FOREVER)</span>
+        <span class="cmt">#click(self.prof)</span>
+
+
+    <span class="kw">def</span> start(self):
+        <span class="skw">click</span>(<img src="1560281882482.png" />)
+        <span class="skw">wait</span>(<img src="1562431431173.png" />, FOREVER)
+        <span class="skw">wait</span>(<span class="dig">3</span>)
+        <span class="skw">click</span>(<img src="1562431377928.png" />)
+
+
+
+time = int(<span class="skw">input</span>(<span class="str">"masukan total unfollow"</span>))
+
+tt = time
+
+unfollowing = Unfol(<img src="1562431204659.png" />, <img src="1562431262343.png" />, <img src="1560275232916.png" />, <img src="1560275245587.png" />, <img src="1562431563762.png" />, <img src="1562431574645.png" />, <img src="1562431639685.png" />, <img src="1562431656121.png" />, Region(<span class="dig">906</span>,<span class="dig">60</span>,<span class="dig">483</span>,<span class="dig">773</span>), time, tt)
+
+unfollowing.start()
+<span class="kw">while</span> True:
+
+    unfollowing.langkah1()
+    unfollowing.langkah2()
+</pre>
+</body>
+</html>

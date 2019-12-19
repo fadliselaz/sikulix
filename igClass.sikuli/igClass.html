@@ -1,0 +1,175 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>igClass.sikuli</h2> <a href="igClass.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="cmt">#like with class</span>
+<span class="kw">import</span> random
+selebgram = [<span class="str">"princesss"</span>, <span class="str">"attahal"</span>, <span class="str">"lunamaya"</span>, <span class="str">"laudyacynthiabella"</span>, <span class="str">"agnezmo"</span>, <span class="str">"ruben_onsu"</span>, <span class="str">"sarwendah29"</span>, <span class="str">"viavallen"</span>]
+
+<span class="kw">class</span> ig:
+    <span class="kw">def</span> __init__(self, follow, unfollow, execute, reg, tm):
+        self.follow = follow
+        self.unfollow = unfollow
+        self.execute = execute
+        self.reg = reg
+        self.tm = tm
+
+    <span class="kw">def</span> unfollowing(self):
+        e = <span class="dig">0</span>
+        roll = <span class="dig">0</span>
+        <span class="kw">while</span> True:
+            <span class="kw">if</span> exists(self.unfollow):
+
+                <span class="skw">click</span>(self.unfollow)
+                <span class="skw">wait</span>(self.execute, FOREVER)
+                <span class="skw">click</span>(self.execute)
+                e += <span class="dig">1</span>
+                <span class="kw">if</span> e == self.tm:
+                    <span class="skw">popup</span>(<span class="str">"berhasil execute {}"</span>.format(self.tm))
+                    quit()
+                <span class="skw">wait</span>(<span class="dig">2</span>)
+
+
+            <span class="kw">else</span>:
+                <span class="kw">for</span> x <span class="kw">in</span> range(<span class="dig">4</span>):
+                    <span class="skw">type</span>(Key.DOWN *<span class="dig">10</span>)
+                roll += <span class="dig">1</span>
+                <span class="kw">if</span> roll &gt;= <span class="dig">5</span>:
+                    quit()
+
+    <span class="kw">def</span> following(self):
+        f = <span class="dig">0</span>
+        roll = <span class="dig">0</span>
+        <span class="kw">while</span> True:
+            <span class="kw">if</span> exists(self.follow):
+
+                <span class="skw">click</span>(self.follow)
+
+                f += <span class="dig">1</span>
+                <span class="cmt">#reset roll</span>
+                roll = <span class="dig">0</span>
+
+                <span class="kw">if</span> f == self.tm:
+                    <span class="skw">popup</span>(<span class="str">"Berhasil action {}x"</span>.format(self.tm))
+                    quit()
+
+                <span class="skw">wait</span>(<span class="dig">2</span>)
+
+            <span class="kw">else</span>:
+                <span class="kw">for</span> z <span class="kw">in</span> range(<span class="dig">4</span>):
+
+                    <span class="skw">type</span>(Key.DOWN)
+
+                <span class="skw">wait</span>(<span class="dig">1</span>)
+                roll += <span class="dig">1</span>
+                <span class="kw">if</span> roll &gt;= <span class="dig">2</span>:
+                    <span class="skw">popup</span>(<span class="str">"sudah tidak ada yang bisa di clik..!!"</span>)
+                    quit()
+
+
+
+    <span class="kw">def</span> start(self):
+
+
+        seleb = random.choice(selebgram)
+        self.tm = int(<span class="skw">input</span>(<span class="str">"masukan jumlah action :"</span>))
+        tanya = int(<span class="skw">input</span>(<span class="str">"1. Following\n2. Unfollowing"</span>))
+
+        <span class="skw">click</span>(<img src="1560192418580.png" /> <span class="kw">or</span> <img src="1560192434283.png" />)
+        <span class="skw">wait</span>(<img src="1560192518344.png" />,FOREVER)
+        <span class="skw">click</span>(<img src="1560192518344.png" />)
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(seleb)
+        <span class="skw">wait</span>(<span class="dig">5</span>)
+        <span class="skw">click</span>(<img src="1560192649156.png" />)
+
+        <span class="skw">wait</span>(<img src="1560269637516.png" />,FOREVER)
+        <span class="skw">click</span>(Pattern(<img src="1560269637516.png" />).targetOffset(<span class="dig">28</span>,<span class="dig">39</span>))
+        <span class="skw">wait</span>(<img src="1560192712470.png" />,FOREVER)
+        <span class="skw">click</span>(<img src="1560192712470.png" />)
+        <span class="skw">wait</span>(<img src="1560192649156.png" />,FOREVER)
+
+
+
+
+        <span class="kw">if</span> tanya == <span class="dig">1</span>:
+            self.following()
+        <span class="kw">elif</span> tanya == <span class="dig">2</span>:
+            self.unfollowing()
+        <span class="kw">else</span>:
+            quit()
+
+instagram = ig(<img src="1560191080510.png" /> ,<img src="1560191100848.png" /> ,<img src="1560191116242.png" /> ,Region(<span class="dig">933</span>,<span class="dig">117</span>,<span class="dig">452</span>,<span class="dig">673</span>) ,<span class="dig">20</span> )
+
+instagram.start()
+</pre>
+</body>
+</html>
